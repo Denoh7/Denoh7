@@ -1,12 +1,72 @@
-- 👋 Hi, I’m @Denoh7
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+#include <iostream>
+#include <string>
 
-<!---
-Denoh7/Denoh7 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+class BankAccount {
+  private: 
+    std::string accountNumber;
+    double balance;
+
+  public:
+    BankAccount(const std::string & accNum, double initialBalance): accountNumber(accNum), balance(initialBalance) {}
+
+    void open_account() {
+      std::cout << "Enter your full name: ";
+      // Enter Name of a Customer
+      std::getline(std::cin, accountNumber);
+
+      std::cout << "Enter your address: ";
+      // Enter City of a Customer
+      std::getline(std::cin, accountNumber);
+
+      // Enter Type of Account(Saving or Current)
+      char acc_type = 'S';
+      std::cout << "Type of account you want to open saving(S) or Current(C): " << acc_type << std::endl;
+
+      // Enter Amount to deposit
+      balance = 8000;
+      std::cout << "Enter the amount for deposit: " << balance << std::endl;
+      std::cout << "Account Created Successfully" << std::endl;
+    }
+
+    void deposit_money() {
+      double amount;
+      std::cout << "Enter How much money you want to deposit: ";
+      std::cin >> amount;
+
+      balance += amount;
+      std::cout << "Available Balance: " << balance << std::endl;
+    }
+
+    void withdraw_money() {
+      double amount;
+      std::cout << "Enter How much money you want to withdraw: ";
+      std::cin >> amount;
+
+      if (amount <= balance) {
+        balance -= amount;
+        std::cout << "Available balance: " << balance << std::endl;
+      } else {
+        std::cout << "Insufficient balance. Cannot withdraw." << std::endl;
+      }
+    }
+
+    void display_account() {
+      std::cout << "Name: " << accountNumber << std::endl
+                << "Address: " << accountNumber << std::endl
+                << "Type: " << accountNumber[0] << std::endl
+                << "Balance: " << balance << std::endl
+                << std::endl;
+    }
+};
+
+int main() {
+  BankAccount account("SB-123", 1000.0);
+
+  account.open_account();
+  account.deposit_money();
+  account.display_account();
+  account.withdraw_money();
+  account.display_account();
+
+  return 0;
+}
